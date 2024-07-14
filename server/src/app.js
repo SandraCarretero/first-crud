@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
+
 const cors = require('cors');
+const usersRoutes = require('../routes/users.routes');
 
-// Rutas
-const userRoutes = require('./routes/users.routes');
+const port = 8000;
 
-// Middlewares para cliente
 app.use(cors());
-
 app.use(express.json());
+app.use('/api/users', usersRoutes);
 
-// Uso de rutas
-app.use('/api/users', userRoutes);
-
-app.listen(3000, () => console.log('Servidor en ejecución en el puerto 3000'));
+// Iniciar el servidor
+app.listen(port, () => {
+	console.log(`El servidor esta funcionando en el puerto ${port}`);
+});
